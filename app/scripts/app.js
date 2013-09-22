@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cloudMapReduceApp', ['firebase'])
+angular.module('cloudMapReduceApp', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

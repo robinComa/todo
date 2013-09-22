@@ -1,9 +1,32 @@
-<ul>
-    <li ng-repeat="message in messages">
-        {{message.from}} : {{message.content}}
-    </li>
-</ul>
+<div class="panel panel-default">
 
-{{username}} : <input type="text" ng-model="message">
+    <div class="panel-heading">
+        Chat :
+        <a ng-href="{{data}}">{{data}}</a>
+    </div>
 
-<button class="btn" ng-click="addMessage()">send</button>
+    <div class="panel-body">
+
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="message in messages">
+                <button type="button" class="close" aria-hidden="true" ng-click="removeMessage($index)">&times;</button>
+                <h4 class="list-group-item-heading">{{message.from}}</h4>
+                <p class="list-group-item-text">{{message.content}}</p>
+            </a>
+        </div>
+
+        <form ng-submit="addMessage()" name="formAddMessage">
+            <div class="form-group">
+                <label for="userName" class="col-lg-2 control-label" contenteditable="">{{username}} : </label>
+                <div class="input-group col-lg-10">
+                    <input type="text" class="form-control" id="userName" ng-model="message" placeholder="Your message">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn"><i class="glyphicon glyphicon-comment"></i></button>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
