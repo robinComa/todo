@@ -1,0 +1,4 @@
+<span>
+    <span class="c1" ng-hide="editorEnabled" ng-click="enableEditor();">{{model}}</span>
+    <input class="form-control" ng-show="editorEnabled" ng-model="editModel" ng-required="" ui-keypress="{13: 'unEdit()'}" ui-event="{'blur': 'unEdit()'}">
+</span>
