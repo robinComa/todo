@@ -1,0 +1,34 @@
+<div class="panel panel-info">
+
+    <div class="panel-heading">
+        TODO
+    </div>
+
+    <div class="panel-body">
+
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="task in tasks" ng-class="{'done':task.done}" ng-dblclick="setTaskDone(getTaskIdByIndex($index))">
+                <button type="button" class="close" aria-hidden="true" ng-click="removeTask(getTaskIdByIndex($index))">&times;</button>
+                <p class="text-center">
+                    <small class="text-warning">{{task.date | date:'fullDate'}}</small>
+                </p>
+                <p class="list-group-item-text">
+                    <editable model="task.text" changed="setTaskText(getTaskIdByIndex($index), task.text)">
+                </p>
+            </a>
+        </div>
+
+        <form ng-submit="addTask()" name="formAddTask">
+            <div class="form-group">
+                <div class="input-group col-lg-12">
+                    <input type="text" class="form-control" ng-model="newTask" placeholder="Type a task">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn"><i class="glyphicon glyphicon-comment"></i></button>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
