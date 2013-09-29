@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('cloudMapReduceApp', [])
+angular.module('taskApp', [
+        'taskApp.services.task',
+        'taskApp.directives.editable'
+  ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -1,1 +1,8 @@
-/* Will be compiled down to a single stylesheet with your sass files */
+.container{
+    margin-top: 50px;
+}
+
+a.done:hover, a.done{
+    opacity: 0.3;
+    text-decoration: line-through;
+}

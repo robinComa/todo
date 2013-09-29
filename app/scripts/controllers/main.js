@@ -1,37 +1,46 @@
 'use strict';
 
-angular.module('cloudMapReduceApp')
-  .controller('MainCtrl', function ($scope) {
+angular.module('taskApp')
+  .controller('MainCtrl', function ($scope, Task) {
 
         $scope.username = 'User ' + Math.floor(Math.random()*101);
 
-        $scope.data = 'https://jobs-pipe.firebaseio.com/';
-        var ref = new Firebase($scope.data);
-
-        $scope.messages = [];
-        ref.on('value', function(snapshot) {
-            if(snapshot.val() !== null) {
-                $scope.messages = snapshot.val();
-            }
+        Task.onValues(function(values){
+            $scope.tasks = values;
         });
 
-        $scope.addMessage = function() {
-            ref.push({
-                from: $scope.username,
-                content: this.message
+        $scope.addTask = function() {
+            Task.add({
+                date : (new Date()).getTime(),
+                text: this.newTask
             });
-            this.message = "";
+            this.newTask = "";
         };
 
-        $scope.removeMessage = function(index){
+        $scope.getTaskIdByIndex = function(index){
             var i = 0;
-            for(var id in $scope.messages){
+            for(var id in $scope.tasks){
                 if(index == i){
-                    delete $scope.messages[id];
-                    ref.child(id).remove();
-                    return;
+                    return id;
                 }
                 i++;
             }
+            return null;
         };
+
+        $scope.setTaskDone = function(id){
+            var done = !$scope.tasks[id].done;
+            $scope.tasks[id].done = done;
+            Task.setDone(id, done);
+        };
+
+        $scope.removeTask = function(id){
+            delete $scope.tasks[id];
+            Task.remove(id);
+        };
+
+        $scope.setTaskText = function(id, text){
+            Task.setText(id, text);
+        };
+
   });
