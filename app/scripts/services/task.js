@@ -1,9 +1,13 @@
 angular.module('taskApp.services.task', []).factory('Task', function($rootScope){
 
-    var ref = new Firebase('https://to-do.firebaseio.com/');
+    var ref;
     var firstConnection = true;
 
     return {
+
+        initAccount : function(user_id){
+            ref = new Firebase('https://to-do.firebaseio.com/'+user_id);
+        },
 
         onValues : function(callbackSuccess){
             ref.on('value', function(snapshot) {

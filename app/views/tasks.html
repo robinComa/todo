@@ -1,0 +1,43 @@
+<form ng-submit="addTask()" name="formAddTask">
+    <div class="form-group">
+        <div class="input-group col-lg-12">
+            <input type="text" class="form-control" ng-model="newTask" placeholder="Type a task {{user.displayName}}..." required="required">
+            <span class="input-group-btn">
+                <button type="submit" class="btn"><i class="glyphicon glyphicon-comment"></i></button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<div class="col-md-12 col-sm-6 col-lg-6">
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            Unknown TODO
+        </div>
+
+        <div class="panel-body">
+
+            <div class="list-group">
+                <a class="list-group-item" ng-repeat="task in tasks" ng-class-odd="'odd'" ng-class-even="'even'" ng-dblclick="setTaskDone(getTaskIdByIndex($index))">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-lg-2">
+                            <small class="text-info">{{task.date | dateDelta}}</small>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9" ng-class="{'done':task.done}">
+                            <p class="list-group-item-text">
+                                <editable model="task.text" changed="setTaskText(getTaskIdByIndex($index), task.text)"/>
+                            </p>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-lg-1">
+                            <button type="button" class="close" aria-hidden="true" ng-click="removeTask(getTaskIdByIndex($index))">&times;</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

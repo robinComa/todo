@@ -1,9 +1,12 @@
 'use strict';
 
-angular.module('taskApp')
-  .controller('MainCtrl', function ($scope, Task) {
+angular.module('taskApp').controller('TasksCtrl', function ($scope, $location, Task, Google) {
 
-        $scope.username = 'User ' + Math.floor(Math.random()*101);
+        if(Google.getUser() == null){
+            $location.path('/');
+        }
+
+        $scope.user = Google.getUser();
 
         Task.onValues(function(values){
             $scope.tasks = values;
