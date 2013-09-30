@@ -2,7 +2,13 @@
     margin-top: 50px;
 }
 
-a.done:hover, a.done{
-    opacity: 0.3;
+.done{
+    opacity: 0.5;
     text-decoration: line-through;
+}
+a.even{
+    background-color: #f2f2f2;
+}
+a.odd{
+
 }
