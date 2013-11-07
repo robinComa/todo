@@ -22,7 +22,7 @@ angular.module("taskApp.directives.editable", ['ui']).directive('editable', func
             scope.enableEditor = function() {
                 scope.editModel = angular.copy(scope.model);
                 scope.editorEnabled = true;
-                // The element enable needs focus and we wait for milliseconds before allowing focus on it.
+                // The enabled element needs focus and we wait for some milliseconds before allowing to focus on it.
                 timer = setTimeout(function() {
                     element.find('input').focus().select();
                 }, 200);
